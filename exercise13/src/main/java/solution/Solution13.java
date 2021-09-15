@@ -19,11 +19,7 @@ public class Solution13 {
      *       - return that int back to its caller
      * create a function 'roundIt' where it takes in a double
      *   if that double has any thousandth place decimal other than zero, round it up to next hundredth
-     *       - use Math.round(xx*100)/100 to scope BOTH rounding up or down to the hundredth
-     *       - compare the rounded number, and original number
-     *       - if 'roundedNumber' < 'originalNumber' means it's rounded down
-     *                   - 'roundedNumber += 0.01,   force it to round up
-     *       - other cases if they are equal, or greater, do no adjustment to it
+     *       - use Math.ceil(xx*100)/100 to scope rounding up to the hundredth
      *       - return the roundedNumber to its caller
      *
      * program starts here:
@@ -59,27 +55,21 @@ public class Solution13 {
     }
 
     public static double roundIt (double original){
-        double rounded = (double) Math.round(original*100)/100;
-        if(rounded < original){
-            rounded += 0.01;
-        }
-        return rounded;
+        return Math.ceil(original*100.00)/100.00;
     }
 
     public static void main(String[] args) {
         double principal = getDouble("What is the principal amount?: ");
-        double rate = getDouble("What si the rate (in percent)?: ");
+        double rate = getDouble("What is the rate (in percent)?: ");
 
         int duration = getInt("What is the number of years (in integer)?: ");
         int compoundPerYear = getInt("What is the number of times the interest is compounded per year?: ");
 
-        rate /= 100;
-        double total = principal * (Math.pow(1+(rate/compoundPerYear),(double) compoundPerYear*duration));
-
-        double roundedTotal = roundIt(total);
+        rate /= 100.00;
+        double total = roundIt(principal * (Math.pow(1+(rate/compoundPerYear),(double) compoundPerYear*duration)));
 
         System.out.printf("$%.2f invested at %.2f%% for %d years compounded %d times per year is $%.2f%n"
-                            , principal, rate*100, duration, compoundPerYear ,roundedTotal);
+                            , principal, rate*100, duration, compoundPerYear ,total);
 
     }
 }
