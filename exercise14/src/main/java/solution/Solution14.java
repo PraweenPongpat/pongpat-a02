@@ -12,16 +12,11 @@ public class Solution14 {
     * GIVEN that WI is the only state baseline exercise aim to detect
     * GIVEN that the %tax is fixed to 5.5%
     *
-    * NOTE: the idea of 0.00499999 is the factor used, is to force the number if there's any fraction to round up
-    *   then round after to the closest next hundredth place without using if-statement
-    *   since the constraint allows only 'a simple if statement, no else', and 'single output statement'
-    *
     * create a function 'getTax' which it will take in two doubles represent amount, and TAX_RATE to tax from
     *   - make a double = 'amount' * TAX_RATE/100
     *   - return the newly calculated double
-    * create a function 'roundIt' which takes in a double [THIS FUNCTION AVOID USING IF STATEMENT]
-    *   - double += 0.00499999 : add 0.00499999 to the number that was passed in, see reason above
-    *   - rounded the number using Math.round()
+    * create a function 'roundIt' which takes in a double
+    *   - use Math.ceil(xx*100.00)/100.00 to scope round up to the hundredth place
     *   - return the value to its caller
     *
     * program starts here:
@@ -53,32 +48,30 @@ public class Solution14 {
     public static final Double TAX_RATE = 5.5;
 
     public static double getTax(double amount, double rate){
-        return amount*rate/100;
+        return amount*rate/100.00;
     }
 
     public static double roundIt(double amount){
-        return (double) Math.round((amount+0.00499999)*100)/100;
+        return Math.ceil(amount*100.00)/100.00;
     }
 
     public static void main(String[] args) {
         //prompt user and get double input
         System.out.print("What is the order amount?: ");
         Scanner input = new Scanner(System.in);
-        double amount = input.nextDouble();
-        input.nextLine();
+        double amount = Double.parseDouble(input.nextLine());
+
         //prompt user and get string input
         System.out.print("What is the state?: ");
         String state = input.nextLine();
 
         //string concatenate before if statement
-        String stringOutput = "The total is $" + amount*100/100;
+        String stringOutput = "The total is $" + (amount*100.00/100.00);
 
         //if statement to determine if input is the same as WI
         if(state.equals(FOCUS_STATE)){
             double taxAmount = getTax(amount,TAX_RATE);
-            double total = amount + taxAmount;
-
-            total = roundIt(total);
+            double total = roundIt(amount + taxAmount);
 
             //update string with new context on it
             stringOutput = ("The subtotal is $" + amount + ".\n" +
