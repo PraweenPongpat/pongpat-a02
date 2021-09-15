@@ -18,11 +18,8 @@ public class Solution11 {
     *       - return that double to its caller
     * create a function 'roundIt' where it takes in a double
     *   if that double has any thousandth place decimal other than zero, round it up to next hundredth
-    *       - use Math.round(xx*100)/100 to scope BOTH rounding up or down to the hundredth
-    *       - compare the rounded number, and original number
-    *       - if 'roundedNumber' < 'originalNumber' means it's rounded down
-    *                   - 'roundedNumber += 0.01,   force it to round up
-    *       - other cases if they are equal, or greater, do no adjustment to it
+    *       - use Math.ceil(xx*100)/100 to scope BOTH rounding up or down to the hundredth
+    *       - the ceil function will round up that hundredth place
     *       - return the roundedNumber to its caller
 
     * program starts from main:
@@ -41,25 +38,20 @@ public class Solution11 {
     public static double getDouble (String prompt){
         System.out.print(prompt);
         Scanner input = new Scanner(System.in);
-        return input.nextDouble();
+        return Double.parseDouble(input.nextLine());
     }
 
     public static double roundIt (double original){
-        double rounded = (double) Math.round(original*100)/100;
-        if(rounded < original){
-            rounded += 0.01;
-        }
-        return rounded;
+        return Math.ceil(original*100)/100;
     }
 
     public static void main(String[] args) {
         double amountEuro = getDouble("How many Euros are you exchanging? ");
         double rate = getDouble("What is the exchange rate? ");
 
-        double amountDollar = amountEuro * rate;
-        double roundedAmountDollar = roundIt(amountDollar);
+        double amountDollar = roundIt(amountEuro * rate);
 
-        System.out.printf("%.2f Euros at an exchange rate of %.4f is%n%.2f U.S. dollars%n"
-                            ,amountEuro, rate, roundedAmountDollar);
+        System.out.printf("%.2f Euros at an exchange rate of %.4f is%n%.2f U.S. dollars.%n"
+                            ,amountEuro ,rate, amountDollar);
     }
 }
