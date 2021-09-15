@@ -15,11 +15,7 @@ public class Solution12 {
     *       - return that double to its caller
     * create a function 'roundIt' where it takes in a double
     *   if that double has any thousandth place decimal other than zero, round it up to next hundredth
-    *       - use Math.round(xx*100)/100 to scope BOTH rounding up or down to the hundredth
-    *       - compare the rounded number, and original number
-    *       - if 'roundedNumber' < 'originalNumber' means it's rounded down
-    *                   - 'roundedNumber += 0.01,   force it to round up
-    *       - other cases if they are equal, or greater, do no adjustment to it
+    *       - use Math.ceil(xx*100)/100 to scope rounding up to the hundredth
     *       - return the roundedNumber to its caller
 
     * Program starts here:
@@ -46,11 +42,7 @@ public class Solution12 {
     }
 
     public static double roundIt (double original){
-        double rounded = (double) Math.round(original*100)/100;
-        if(rounded < original){
-            rounded += 0.01;
-        }
-        return rounded;
+        return Math.ceil(original*100.0)/100.0;
     }
 
     public static void main(String[] args) {
@@ -58,12 +50,10 @@ public class Solution12 {
         double rate = getDouble("Enter the rate of interest (in percent): ");
         double duration = getDouble("Enter the number of years: ");
 
-        rate /= 100;
-        double total = (principal)*(1+(rate*duration));
+        rate /= 100.00;
+        double total = roundIt(principal*(1+(rate*duration)));
 
-        double roundedTotal = roundIt(total);
-
-        System.out.printf("After %.2f years at %.2f%%, the investment will br worth $%.2f%n"
-                            , duration, rate*100, roundedTotal);
+         System.out.printf("After %.0f years at %.2f%%, the investment will br worth $%.2f.%n"
+                            , duration, rate*100, total);
     }
 }
