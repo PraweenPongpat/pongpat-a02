@@ -1,3 +1,8 @@
+/*
+ *  UCF COP3330 Fall 2021 Assignment 2 Solution for exercise18
+ *  Copyright 2021 Praween Pongpat
+ */
+
 package solution;
 
 import java.util.Locale;
