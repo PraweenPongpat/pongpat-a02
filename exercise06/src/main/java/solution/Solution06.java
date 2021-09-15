@@ -28,28 +28,22 @@ public class Solution06 {
     //      print "It's xx, so you can retire in yy" via 'thisYear' and 'retireYear'
 
     public static int getAge(String prompt){
-        System.out.print(prompt);               //print prompt to user
-        Scanner input = new Scanner(System.in); //allocate input to use Scanner API
-        String valueString = input.nextLine();  //get input as a string
-        return Integer.parseInt(valueString);   //convert that sting to int and return to caller
+        System.out.print(prompt);
+        Scanner input = new Scanner(System.in);
+        return Integer.parseInt(input.nextLine());
     }
 
     public static void main(String[] args) {
-        //passing a prompt for current age, store return value in 'currentAge'
         int currentAge = getAge("What is your current age? ");
 
-        //passing a prompt for retired age, store return value in 'retireAge'
         int retireAge = getAge("At what age would you like to retire? ");
 
-        //get the current year through .time.LocalDate using .getYear()
         LocalDate today = LocalDate.now();
         int thisYear = today.getYear();
 
-        //calculation
         int workingYear = retireAge - currentAge;
         int retireYear = thisYear + workingYear;
 
-        //print output to user
         System.out.println("You have " + workingYear + " years left until you can retire.");
         System.out.println("It's " + thisYear + ", so you can retire in " + retireYear);
     }
