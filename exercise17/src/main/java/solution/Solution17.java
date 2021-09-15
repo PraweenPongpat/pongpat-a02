@@ -84,8 +84,8 @@ public class Solution17 {
         }
     }
 
-    public static final double MAX_BAC_MALE = 0.73;
-    public static final double MAX_BAC_FEMALE = 0.66;
+    public static final double RATIO_BAC_MALE = 0.73;
+    public static final double RATIO_BAC_FEMALE = 0.66;
     public static final double LEGAL_LIMIT = 0.08;
 
     public static void main(String[] args) {
@@ -94,15 +94,13 @@ public class Solution17 {
         double weight = getDouble("What is your weight, in pounds?: ");
         int numHours = getInt("How many hours has it been since your last drink?: ");
 
-        double limit = (sex==1)? MAX_BAC_MALE : MAX_BAC_FEMALE;
+        double limit = (sex==1)? RATIO_BAC_MALE : RATIO_BAC_FEMALE;
         double valueBAC = (numOunce * 5.14/weight * limit) - (0.015 * numHours);
 
-        System.out.printf("Your BAC is %.6f%n", valueBAC);
+        System.out.printf("Your BAC is %.4f%n", valueBAC);
 
-        if (valueBAC < LEGAL_LIMIT){
-            System.out.println("It is legal for you to drive.");
-        } else {
-            System.out.println("It is NOT legal for you to drive.");
-        }
+        String flag = (valueBAC < LEGAL_LIMIT) ? "legal" : "NOT legal";
+
+        System.out.println("It is " + flag + " for you to drive.");
     }
 }
