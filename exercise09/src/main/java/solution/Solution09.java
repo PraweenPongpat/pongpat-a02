@@ -28,20 +28,22 @@ public class Solution09 {
     *   display output: "You will need to purchase xx gallons of paint to cover yy square feet"
     *       - where xx is the rounded (if any) 'numGallon', yy is 'areaFeet'
      */
-    public static final int COVER_AREA_PER_GALLON = 350;
+    private static final int COVER_AREA_PER_GALLON = 350;
+    private static final Scanner input = new Scanner(System.in);
 
-    public static double getFeet(String prompt){
+    private double getFeet(String prompt){
         System.out.print(prompt);
-        Scanner input = new Scanner(System.in);
-        return input.nextDouble();
+        return Double.parseDouble(input.nextLine());
     }
 
     public static void main(String[] args) {
-        double length = getFeet("What is the length of the room? ");
-        double width = getFeet("What is the width of the room? ");
+        Solution09 sol = new Solution09();
+
+        double length = sol.getFeet("What is the length of the room? ");
+        double width = sol.getFeet("What is the width of the room? ");
 
         double areaFeet = length * width;
-        int numGallon = (int) Math.ceil(areaFeet/COVER_AREA_PER_GALLON);
+        int numGallon = (int) Math.ceil(areaFeet/(double)COVER_AREA_PER_GALLON);
 
         System.out.printf("You will need to purchase %d gallon(s) of paint to cover %.1f square feet%n"
                             ,numGallon,areaFeet);

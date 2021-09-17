@@ -1,3 +1,5 @@
 
-S	java:S106""9Replace this use of System.out or System.err by a logger.(Æİêùÿÿÿÿ
-S	java:S106."9Replace this use of System.out or System.err by a logger.(³…©ãıÿÿÿÿ
+S	java:S106#"9Replace this use of System.out or System.err by a logger.(Æİêùÿÿÿÿ
+F
+java:S1905.")Remove this unnecessary cast to "double".(Ğ¨«ª8Ñ©¨ª¿/
+S	java:S1060"9Replace this use of System.out or System.err by a logger.(³…©ãıÿÿÿÿ
