@@ -38,11 +38,11 @@ public class Solution19 {
     *       - else if BMI is between 18.5 to 25; prompt user showing being healthy
     *       - else if BMI is over 25; prompt user showing overweight context, see doctor
      */
+    private static final Scanner input = new Scanner(System.in);
 
-    public static double getDouble(String prompt){
+    private double getDouble(String prompt){
         boolean valid = false;
         double data = 0.00;
-        Scanner input = new Scanner(System.in);
         do{
             System.out.print("What is your " + prompt + "?: ");
             try{
@@ -57,7 +57,7 @@ public class Solution19 {
         return data;
     }
 
-    public static boolean isValid(double data){
+    private boolean isValid(double data){
         if(data>0.00){
             return true;
         } else{
@@ -66,15 +66,18 @@ public class Solution19 {
         }
     }
 
-    public static double findBMI(double height, double weight){
+    private double findBMI(double height, double weight){
         return (weight / (height * height)) * 703;
     }
 
     public static void main(String[] args) {
-        double height = getDouble("height");
-        double weight = getDouble("weight");
+        Solution19 sol = new Solution19();
 
-        double result = findBMI(height, weight);
+        double height = sol.getDouble("height");
+        double weight = sol.getDouble("weight");
+
+        double result = sol.findBMI(height, weight);
+
         String output;
         if(result<18.5)
             output = "You're underweight, need to eat!";
