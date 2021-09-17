@@ -27,16 +27,19 @@ public class Solution06 {
     //      print "you have xx years left until you can retire" via 'workingYear'
     //      print "It's xx, so you can retire in yy" via 'thisYear' and 'retireYear'
 
-    public static int getAge(String prompt){
+    private static final Scanner input = new Scanner(System.in);
+
+    private int getAge(String prompt){
         System.out.print(prompt);
-        Scanner input = new Scanner(System.in);
         return Integer.parseInt(input.nextLine());
     }
 
     public static void main(String[] args) {
-        int currentAge = getAge("What is your current age? ");
+        Solution06 sol = new Solution06();
 
-        int retireAge = getAge("At what age would you like to retire? ");
+        int currentAge = sol.getAge("What is your current age? ");
+
+        int retireAge = sol.getAge("At what age would you like to retire? ");
 
         LocalDate today = LocalDate.now();
         int thisYear = today.getYear();
@@ -44,7 +47,7 @@ public class Solution06 {
         int workingYear = retireAge - currentAge;
         int retireYear = thisYear + workingYear;
 
-        System.out.println("You have " + workingYear + " years left until you can retire.");
-        System.out.println("It's " + thisYear + ", so you can retire in " + retireYear);
+        System.out.println("You have " + workingYear + " years left until you can retire.\n"
+                            + "It's " + thisYear + ", so you can retire in " + retireYear);
     }
 }
