@@ -53,9 +53,12 @@ public class Solution17 {
     *       - if so, display output "It is legal for you to drive."
     *       - if not, display output "It is NOT legal for you to drive."
      */
+    private static final Scanner input = new Scanner(System.in);
+    private static final double RATIO_BAC_MALE = 0.73;
+    private static final double RATIO_BAC_FEMALE = 0.66;
+    private static final double LEGAL_LIMIT = 0.08;
 
-    public static int getInt(String prompt){
-        Scanner input = new Scanner(System.in);
+    private int getInt(String prompt){
         String tempString;
         while(true){
             System.out.print(prompt);
@@ -69,8 +72,7 @@ public class Solution17 {
         }
     }
 
-    public static double getDouble(String prompt){
-        Scanner input = new Scanner(System.in);
+    private double getDouble(String prompt){
         String tempString;
         while(true){
             System.out.print(prompt);
@@ -84,15 +86,13 @@ public class Solution17 {
         }
     }
 
-    public static final double RATIO_BAC_MALE = 0.73;
-    public static final double RATIO_BAC_FEMALE = 0.66;
-    public static final double LEGAL_LIMIT = 0.08;
-
     public static void main(String[] args) {
-        int sex = getInt("Enter: 1) if you're male, 2) if you are female: ");
-        double numOunce = getDouble("How many ounces of alcohol did you have?: ");
-        double weight = getDouble("What is your weight, in pounds?: ");
-        int numHours = getInt("How many hours has it been since your last drink?: ");
+        Solution17 sol = new Solution17();
+
+        int sex = sol.getInt("Enter: 1) if you're male, 2) if you are female: ");
+        double numOunce = sol.getDouble("How many ounces of alcohol did you have?: ");
+        double weight = sol.getDouble("What is your weight, in pounds?: ");
+        int numHours = sol.getInt("How many hours has it been since your last drink?: ");
 
         double limit = (sex==1)? RATIO_BAC_MALE : RATIO_BAC_FEMALE;
         double valueBAC = (numOunce * 5.14/weight * limit) - (0.015 * numHours);
