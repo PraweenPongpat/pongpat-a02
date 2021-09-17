@@ -33,24 +33,26 @@ public class Solution07 {
     *       display "yy square meters" where yy is 'areaMeters'
      */
 
-    static final double CONSTANT_CONVERSION = 0.09290304;
+    private static final double CONSTANT_CONVERSION = 0.09290304;
+    private static final Scanner input = new Scanner(System.in);
 
-    public static double getFeet(String prompt){
+    private double getFeet(String prompt){
         System.out.print(prompt);
-        Scanner input = new Scanner(System.in);
         return input.nextDouble();
     }
 
-    public static double sqFeetToSqMeters(double length, double width){
+    private double sqFeetToSqMeters(double length, double width){
         return length*width*CONSTANT_CONVERSION;
     }
 
     public static void main(String[] args) {
-        double length = getFeet("What is the length of the room in feet? ");
-        double width = getFeet("What is the width of the room in feet? ");
+        Solution07 sol = new Solution07();
+
+        double length = sol.getFeet("What is the length of the room in feet? ");
+        double width = sol.getFeet("What is the width of the room in feet? ");
 
         double areaFeet = length * width;
-        double areaMeters = sqFeetToSqMeters(length,width);
+        double areaMeters = sol.sqFeetToSqMeters(length,width);
 
         System.out.println("You entered dimensions of " + length +" feet by " + width + " feet.");
         System.out.println("The area is");
