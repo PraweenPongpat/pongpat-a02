@@ -34,22 +34,24 @@ public class Solution11 {
     *       - print "xx Euros at and exchange rate of yy is", where xx is 'amountEuros', yy is rate
     *       - print "xx U.S. dollars" where xx is 'roundedAmountDollar'
      */
+    private static final Scanner input = new Scanner(System.in);
 
-    public static double getDouble (String prompt){
+    private double getDouble (String prompt){
         System.out.print(prompt);
-        Scanner input = new Scanner(System.in);
         return Double.parseDouble(input.nextLine());
     }
 
-    public static double roundIt (double original){
-        return Math.ceil(original*100)/100;
+    private double roundIt (double original){
+        return Math.ceil(original*100.00)/100.00;
     }
 
     public static void main(String[] args) {
-        double amountEuro = getDouble("How many Euros are you exchanging? ");
-        double rate = getDouble("What is the exchange rate? ");
+        Solution11 sol = new Solution11();
 
-        double amountDollar = roundIt(amountEuro * rate);
+        double amountEuro = sol.getDouble("How many Euros are you exchanging? ");
+        double rate = sol.getDouble("What is the exchange rate? ");
+
+        double amountDollar = sol.roundIt((amountEuro * rate));
 
         System.out.printf("%.2f Euros at an exchange rate of %.4f is%n%.2f U.S. dollars.%n"
                             ,amountEuro ,rate, amountDollar);
