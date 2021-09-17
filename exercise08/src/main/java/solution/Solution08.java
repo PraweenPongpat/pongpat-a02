@@ -30,17 +30,19 @@ public class Solution08 {
     *       - print "Each person gets xx pieces of pizza" where xx='sliceEach'
     *       - print "There are xx leftover pieces" where xx=remainSlice
      */
+    private static final Scanner input = new Scanner(System.in);
 
-    public static int getInt(String prompt){
+    private int getInt(String prompt){
         System.out.print(prompt);
-        Scanner input = new Scanner(System.in);
-        return input.nextInt();
+        return Integer.parseInt(input.nextLine());
     }
 
     public static void main(String[] args) {
-        int numPeople = getInt("How many people? ");
-        int numPizza = getInt("How many pizza do you have? ");
-        int slicePerPizza = getInt("How many slices per pizza? ");
+        Solution08 sol = new Solution08();
+
+        int numPeople = sol.getInt("How many people? ");
+        int numPizza = sol.getInt("How many pizza do you have? ");
+        int slicePerPizza = sol.getInt("How many slices per pizza? ");
 
         int totalSlices = numPizza*slicePerPizza;
         int sliceEach = totalSlices/numPeople;
