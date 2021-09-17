@@ -41,32 +41,33 @@ public class Solution13 {
      *      - print "$vv invested at ww% for xx years compounded yy times per year is $zz"
      *          where vv = principal, ww = rate in percent, xx = duration, yy = compoundPerYear, zz = roundedTotal
      */
+    private static final Scanner input = new Scanner(System.in);
 
-    public static double getDouble (String prompt){
+    private double getDouble (String prompt){
         System.out.print(prompt);
-        Scanner input = new Scanner(System.in);
-        return input.nextDouble();
+        return Double.parseDouble(input.nextLine());
     }
 
-    public static int getInt (String prompt){
+    private int getInt (String prompt){
         System.out.print(prompt);
-        Scanner input = new Scanner(System.in);
-        return input.nextInt();
+        return Integer.parseInt(input.nextLine());
     }
 
-    public static double roundIt (double original){
+    private double roundIt (double original){
         return Math.ceil(original*100.00)/100.00;
     }
 
     public static void main(String[] args) {
-        double principal = getDouble("What is the principal amount?: ");
-        double rate = getDouble("What is the rate (in percent)?: ");
+        Solution13 sol = new Solution13();
 
-        int duration = getInt("What is the number of years (in integer)?: ");
-        int compoundPerYear = getInt("What is the number of times the interest is compounded per year?: ");
+        double principal = sol.getDouble("What is the principal amount?: ");
+        double rate = sol.getDouble("What is the rate (in percent)?: ");
+
+        int duration = sol.getInt("What is the number of years (in integer)?: ");
+        int compoundPerYear = sol.getInt("What is the number of times the interest is compounded per year?: ");
 
         rate /= 100.00;
-        double total = roundIt(principal * (Math.pow(1+(rate/compoundPerYear),(double) compoundPerYear*duration)));
+        double total = sol.roundIt(principal * (Math.pow(1+(rate/compoundPerYear),(double) compoundPerYear*duration)));
 
         System.out.printf("$%.2f invested at %.2f%% for %d years compounded %d times per year is $%.2f%n"
                             , principal, rate*100, duration, compoundPerYear ,total);
