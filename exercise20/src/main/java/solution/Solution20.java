@@ -51,24 +51,23 @@ public class Solution20 {
      */
 
     //define constants given
-    public static final double BASE_RATE_WI = 5.00;
-    public static final double BASE_RATE_IL = 8.00;
-    public static final double ADDITION_WI_EAU_CLAIRE = 0.50;
-    public static final double ADDITION_WI_DUNN = 0.4;
+    private static final double BASE_RATE_WI = 5.00;
+    private static final double BASE_RATE_IL = 8.00;
+    private static final double ADDITION_WI_EAU_CLAIRE = 0.50;
+    private static final double ADDITION_WI_DUNN = 0.4;
+    private static final Scanner input = new Scanner(System.in);
 
-    public static double getAmount(){
+    private double getAmount(){
         System.out.print("What is the order amount?: ");
-        Scanner input = new Scanner(System.in);
         return Double.parseDouble(input.nextLine());
     }
 
-    public static String getString(String keyword){
+    private String getString(String keyword){
         System.out.print("What " + keyword + " do you live in?: ");
-        Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
 
-    public static double getTaxRate(String state, String county){
+    private double getTaxRate(String state, String county){
         double taxRate = 0.00;
         if (state.equals("WI") || state.equals("Wisconsin")){
             taxRate = BASE_RATE_WI;
@@ -85,15 +84,21 @@ public class Solution20 {
         return taxRate;
     }
 
+    private double roundIt(double amount){
+        return Math.ceil(amount*100.00)/100.00;
+    }
+
     public static void main(String[] args) {
+        Solution20 sol = new Solution20();
+
         //takes in inputs
-        double amount = getAmount();
-        String state = getString("state");
-        String county = getString("county");
+        double amount = sol.getAmount();
+        String state = sol.getString("state");
+        String county = sol.getString("county");
 
         //calculations
-        double taxRate = getTaxRate(state,county);
-        double taxAmount = amount * taxRate/100.00;
+        double taxRate = sol.getTaxRate(state,county);
+        double taxAmount = sol.roundIt(amount * taxRate/100.00);
         double totalPrice = amount + taxAmount;
 
         //display output
