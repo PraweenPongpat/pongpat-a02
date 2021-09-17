@@ -25,21 +25,31 @@ public class Solution15 {
     *       - if it is not the same:
     *           output "I don't know you."
      */
+    private static final Scanner input = new Scanner(System.in);
+    private static final String PASSWORD = "abc$123";
 
-    public static String getString(String prompt){
-        System.out.print(prompt);
-        Scanner input = new Scanner(System.in);
+    private String getString(String prompt){
+        System.out.print("What is the " + prompt + "?: ");
         return input.nextLine();
     }
-    public static final String PASSWORD = "abc$123";
-    public static void main(String[] args) {
-        getString("What is the username?: ");
-        String password = getString("What is the password?: ");
 
-        if(password.equals(PASSWORD)){
-            System.out.println("Welcome!");
+    private boolean passwordValidator(String password){
+        return password.equals(PASSWORD);
+    }
+
+    public static void main(String[] args) {
+        Solution15 sol = new Solution15();
+
+        sol.getString("username");
+        String password = sol.getString("password");
+
+        String response;
+        if(sol.passwordValidator(password)){
+            response = "Welcome!";
         } else{
-            System.out.println("I don't know you.");
+            response = "I don't know you.";
         }
+
+        System.out.println(response);
     }
 }
