@@ -34,24 +34,26 @@ public class Solution12 {
     *       - "After xx years at yy%, the investment will be worth $zz"
     *           where xx = 'duration', yy = rate', zz = 'roundedTotal'
      */
+    private static final Scanner input = new Scanner(System.in);
 
-    public static double getDouble(String prompt){
+    private double getDouble(String prompt){
         System.out.print(prompt);
-        Scanner input = new Scanner(System.in);
         return input.nextDouble();
     }
 
-    public static double roundIt (double original){
+    private double roundIt (double original){
         return Math.ceil(original*100.0)/100.0;
     }
 
     public static void main(String[] args) {
-        double principal = getDouble("Enter the principal: ");
-        double rate = getDouble("Enter the rate of interest (in percent): ");
-        double duration = getDouble("Enter the number of years: ");
+        Solution12 sol = new Solution12();
+
+        double principal = sol.getDouble("Enter the principal: ");
+        double rate = sol.getDouble("Enter the rate of interest (in percent): ");
+        double duration = sol.getDouble("Enter the number of years: ");
 
         rate /= 100.00;
-        double total = roundIt(principal*(1+(rate*duration)));
+        double total = sol.roundIt(principal*(1+(rate*duration)));
 
          System.out.printf("After %.0f years at %.2f%%, the investment will br worth $%.2f.%n"
                             , duration, rate*100, total);
