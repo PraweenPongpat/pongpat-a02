@@ -47,27 +47,25 @@ public class Solution18 {
      *      - passing in the context and 'flag2',
      *          - i.e. "The temperature in Celsius is xx" where flag2 is Celsius and xx is 'result'
     */
+    private static final Scanner input = new Scanner(System.in);
 
-    public static String getString(String prompt){
+    private String getString(String prompt){
         System.out.print(prompt);
-        Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
 
-    public static double cToF(double c){
+    private double cToF(double c){
         return (c*9.0/5.0)+32.0;
     }
 
-    public static double fToC(double f){
+    private double fToC(double f){
         return (f-32.0)*5.0/9.0;
     }
 
-    public static void displayOutput(String context, Double result){
-        System.out.println(context + result);
-    }
-
     public static void main(String[] args) {
-        String unit = getString("""
+        Solution18 sol = new Solution18();
+
+        String unit = sol.getString("""
                 What unit would you like to convert to....
                 1) Press C for converting Fahrenheit to Celsius
                 2) Press F for converting Celsius to Fahrenheit
@@ -76,14 +74,14 @@ public class Solution18 {
         String flag1 = (unit.equals("c"))? "Fahrenheit" : "Celsius";
         String flag2 = (unit.equals("c"))? "Celsius" : "Fahrenheit";
 
-        double temperature = Double.parseDouble(getString("Please enter temperature in " + flag1 + ": "));
+        double temperature = Double.parseDouble(sol.getString("Please enter temperature in " + flag1 + ": "));
         double result;
 
         if(unit.equals("c")){
-            result = fToC(temperature);
+            result = sol.fToC(temperature);
         } else {
-            result = cToF(temperature);
+            result = sol.cToF(temperature);
         }
-        displayOutput("The temperature in "+ flag2 + " is ", result);
+        System.out.printf("The temperature in %s is %.2f%n", flag2, result);
     }
 }
