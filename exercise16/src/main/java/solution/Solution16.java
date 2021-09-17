@@ -23,17 +23,18 @@ public class Solution16 {
     *       if so, set string to "You are old enough to legally drive."
     *       if not, set string to "You are not old enough to legally drive."
      */
+    private static final Scanner input = new Scanner(System.in);
+    private static final int DRIVING_AGE = 16;
 
-    public static int getInt(String prompt){
+    private int getInt(String prompt){
         System.out.print(prompt);
-        Scanner input = new Scanner(System.in);
-        return input.nextInt();
+        return Integer.parseInt(input.nextLine());
     }
 
-    public static final int DRIVING_AGE = 16;
-
     public static void main(String[] args) {
-        int age = getInt("What is your age?: ");
+        Solution16 sol = new Solution16();
+
+        int age = sol.getInt("What is your age?: ");
         String output = (age>=DRIVING_AGE) ?
                 "You are old enough to legally drive." : "You are not old enough to legally drive.";
         System.out.println(output);
