@@ -36,12 +36,14 @@ public class Solution21 {
     *           - display string store in 'result'
     *   as long as flag doesn't set to false, the loop doesn't end
     */
-    public static int getNumMonth (){
+    private static final Scanner input = new Scanner(System.in);
+
+    private int getNumMonth (){
         System.out.print("Please enter the number of the month: ");
-        Scanner input = new Scanner(System.in);
-        return input.nextInt();
+        return Integer.parseInt(input.nextLine());
     }
-    public static String checkMonth(int numMonth){
+
+    private String checkMonth(int numMonth){
         return switch (numMonth) {
             case 1 -> "January";
             case 2 -> "February";
@@ -60,14 +62,16 @@ public class Solution21 {
     }
 
     public static void main(String[] args) {
+        Solution21 sol = new Solution21();
+
         String result;
         boolean flag = true;
 
         while(flag){
-            int numMonth = getNumMonth();
+            int numMonth = sol.getNumMonth();
 
             if(numMonth>=1 && numMonth<=12){
-                result = "The name of the month is: " + checkMonth(numMonth);
+                result = "The name of the month is: " + sol.checkMonth(numMonth);
                 flag = false;
             } else {
                 result = "You have entered the non-existing month, it's only 1 to 12... try again";
