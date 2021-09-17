@@ -43,49 +43,53 @@ public class Solution10 {
     *       - print "totalOutput'
     */
 
-    //defining constants
-    public static final int NUM_ITEM_BUYING = 3;
-    public static final double TAX_RATE = 5.5;
+    private static final Scanner input = new Scanner(System.in);
 
-    public static double getPrice(int index){
+    //defining constants
+    private static final int NUM_ITEM_BUYING = 3;
+    private static final double TAX_RATE = 5.5;
+
+    private double getPrice(int index){
         System.out.printf("Enter the price of item %d: ", index);
-        Scanner input = new Scanner(System.in);
         return Double.parseDouble(input.nextLine());
     }
 
-    public static int howMany(int index){
+    private int howMany(int index){
         System.out.printf("Enter the quantity of item %d: ", index);
-        Scanner input = new Scanner(System.in);
         return Integer.parseInt(input.nextLine());
     }
 
+    private double getSubtotal(double[] arrDouble, int[] arrInt){
+        double res = 0.00;
+        for(int i=0; i<NUM_ITEM_BUYING; i++){
+            res += (arrDouble[i]*arrInt[i]);
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
+        Solution10 sol = new Solution10();
+
         //create arrays
         double[] prices = new double[NUM_ITEM_BUYING];
         int[] quantities = new int[NUM_ITEM_BUYING];
 
         //get input
         for(int i=0; i<NUM_ITEM_BUYING; i++){
-            prices[i] = getPrice(i+1);
-            quantities[i] = howMany(i+1);
+            prices[i] = sol.getPrice(i+1);
+            quantities[i] = sol.howMany(i+1);
         }
 
         //perform calculation
-        double priceBeforeTax = 0.00;
-        for(int j=0; j<NUM_ITEM_BUYING; j++){
-            priceBeforeTax += (prices[j]*quantities[j]);
-        }
+        double priceBeforeTax = sol.getSubtotal(prices,quantities);
         double tax = priceBeforeTax * TAX_RATE/100;
         double priceAfterTax = priceBeforeTax + tax;
 
-        //build Strings
-        String subtotalOutput = "Subtotal: $" + priceBeforeTax;
-        String taxOutput = "Tax: $" + tax;
-        String totalOutput = "Total: $" + priceAfterTax;
+        //build String
+        String output = String.format("Subtotal: $%.2f%nTax: $%.2f%nTotal: $%.2f",
+                                        priceBeforeTax,tax,priceAfterTax);
 
         //display output
-        System.out.println(subtotalOutput);
-        System.out.println(taxOutput);
-        System.out.println(totalOutput);
+        System.out.println(output);
     }
 }
