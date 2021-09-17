@@ -43,22 +43,23 @@ public class Solution14 {
     *   display output: print out 'stringOutput' to user
 
      */
+    private static final Scanner input = new Scanner(System.in);
+    private static final String FOCUS_STATE = "WI";
+    private static final Double TAX_RATE = 5.5;
 
-    public static final String FOCUS_STATE = "WI";
-    public static final Double TAX_RATE = 5.5;
-
-    public static double getTax(double amount, double rate){
+    private double getTax(double amount, double rate){
         return amount*rate/100.00;
     }
 
-    public static double roundIt(double amount){
+    private double roundIt(double amount){
         return Math.ceil(amount*100.00)/100.00;
     }
 
     public static void main(String[] args) {
+        Solution14 sol = new Solution14();
+
         //prompt user and get double input
         System.out.print("What is the order amount?: ");
-        Scanner input = new Scanner(System.in);
         double amount = Double.parseDouble(input.nextLine());
 
         //prompt user and get string input
@@ -66,19 +67,18 @@ public class Solution14 {
         String state = input.nextLine();
 
         //string concatenate before if statement
-        String stringOutput = "The total is $" + (amount*100.00/100.00);
+        String stringOutput = String.format("The total is $%.2f%n",(amount*100.00/100.00));
 
         //if statement to determine if input is the same as WI
         if(state.equals(FOCUS_STATE)){
-            double taxAmount = getTax(amount,TAX_RATE);
-            double total = roundIt(amount + taxAmount);
+            double taxAmount = sol.getTax(amount,TAX_RATE);
+            double total = sol.roundIt(amount + taxAmount);
 
             //update string with new context on it
-            stringOutput = ("The subtotal is $" + amount + ".\n" +
-                           "The tax is $" + taxAmount + ".\n" +
-                           "The total is $" + total + ".\n");
+            stringOutput = String.format("The subtotal is $%.2f%nThe tax is $%.2f%nThe total is $%.2f%n",
+                                            amount , taxAmount ,total);
         }
         //display output
-        System.out.println(stringOutput);
+        System.out.print(stringOutput);
     }
 }
